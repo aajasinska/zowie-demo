@@ -122,6 +122,8 @@ if(data){
 
   if (data.shipmentStatus && data.shipmentStatus.includes("Delivered")){
     shipBadgeClass = "badge-delivered";
+  } else if (data.shipmentStatus && data.shipmentStatus.includes("Transit")) {
+    shipBadgeClass = "badge-processing";
   }
 
   let deliveryLabel = "Expected Delivery";
