@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeting Card</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, system-ui, sans-serif; background: transparent; }
+    .card {
+      margin: 0 8px 12px;
+      padding: 20px;
+      max-width: 360px;
+      border-radius: 12px;
+      background: #f9fafb;
+    }
+    .card h1 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .card p { font-size: 14px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="card" id="app"></div>
+
+  <script>
+    // Parse data from the URL
+    var raw = new URLSearchParams(window.location.search).get('data');
+    var data = null;
+    if (raw) {
+      try {
+        data = JSON.parse(decodeURIComponent(raw));
+      } catch (e) {}
+    }
+
+    var app = document.getElementById('app');
+    if (data) {
+      app.innerHTML = '<h1>Hi, ' + data.name + '!</h1><p>' + data.message + '</p>';
+    } else {
+      app.textContent = 'No data provided.';
+    }
+
+    // Report height
+    var height = Math.ceil(document.documentElement.scrollHeight);
+    if (window.parent !== window) {
+      window.parent.postMessage(
+        { source: 'zowie-visual-aid', type: 'visualAidResize', height: height },
+        '*'
+      );
+    }
+  </script>
+</body>
+</html>
