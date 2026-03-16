@@ -55,12 +55,20 @@ body{
   font-weight:500;
 }
 
-.footer{
+.footer-hello{
   padding:14px 20px;
   font-size:14px;
   color:black;
   background:#e6e3df;
 }
+
+.footer-chat{
+  padding:14px 20px;
+  font-size:14px;
+  color:black;
+  background:#eddbc2;
+}
+
 </style>
 </head>
 
@@ -88,7 +96,7 @@ if (data) {
   var style = surface === 'hello' ? 'hello' : 'chat';
 
   app.innerHTML = `
-    <div class="card ${style}">
+    <div class="card-${style}">
   
     <div class="header">
       Checking your warranty claim
@@ -104,7 +112,7 @@ if (data) {
       <span class="value">${data.orderNumber}</span>
     </div>
 
-    <div class="footer">
+    <div class="footer-${style}">
       Getting information on your warranty claim now...
     </div>
 
