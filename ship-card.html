@@ -46,18 +46,13 @@ body{
   font-weight:600;
 }
 
-.badge-transit{
-  background:#dbeafe;
-  color:black;
-}
-
 .badge-delivered{
   background:#a2d99c;
   color:white;
 }
 
 .badge-processing{
-  background:#dbeafe;
+  background:#e6e3df;
   color:black;
 }
 
@@ -110,11 +105,7 @@ if(data){
   let badgeClass = "badge-processing";
   var style = surface === 'hello' ? 'hello' : 'chat';
 
-  if(data.shipmentStatus === "In Transit"){
-    badgeClass = "badge-transit";
-  }
-
-  if(data.shipmentStatus === "Delivered"){
+  if (data.shipmentStatus.includes("Delivered")){
     badgeClass = "badge-delivered";
   }
 
