@@ -13,12 +13,20 @@ body{
   background:transparent;
 }
 
-.card{
+.card-hello{
   max-width:360px;
   margin:0 8px 12px;
   border-radius:12px;
-  overflow:hidden;
   background:white;
+  overflow:hidden;
+}
+
+.card-chat{
+  max-width:360px;
+  margin:0 8px 12px;
+  border-radius:12px;
+  background:#fcedd9;
+  overflow:hidden;
 }
 
 .header{
@@ -94,11 +102,13 @@ if(raw){
   }catch(e){}
 }
 
+var surface = params.get('surface');
 const app = document.getElementById("app");
 
 if(data){
 
   let badgeClass = "badge-processing";
+  var style = surface === 'hello' ? 'hello' : 'chat';
 
   if(data.shipmentStatus === "In Transit"){
     badgeClass = "badge-transit";
@@ -109,7 +119,7 @@ if(data){
   }
 
   app.innerHTML = `
-  <div class="card">
+  <div class="card-${style}">
 
     <div class="header">
       <span>Replacement Shipment</span>
