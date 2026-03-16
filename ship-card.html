@@ -118,6 +118,14 @@ if(data){
     badgeClass = "badge-delivered";
   }
 
+  let deliveryLabel = "Expected Delivery";
+  let deliveryValue = data.expectedDeliveryDate;
+  
+  if (data.shipmentStatus === "Delivered" && data.actualDeliveryDate) {
+    deliveryLabel = "Delivered On";
+    deliveryValue = data.actualDeliveryDate;
+  }
+
   app.innerHTML = `
   <div class="card-${style}">
 
@@ -139,8 +147,8 @@ if(data){
     </div>
 
     <div class="row">
-      <span class="label">Expected Delivery</span>
-      <span class="value">${data.expectedDeliveryDate}</span>
+      <span class="label">${deliveryLabel}</span>
+      <span class="value">${deliveryValue}</span>
     </div>
 
   </div>
