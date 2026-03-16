@@ -84,10 +84,11 @@ if(raw){
 var surface = params.get('surface');
 const app = document.getElementById("app");
 
-if(data){
+if (data) {
   var style = surface === 'hello' ? 'hello' : 'chat';
+
   app.innerHTML = `
-  <div class="card' + style + '>">
+    <div class="card ${style}">
   
     <div class="header">
       Checking your warranty claim
