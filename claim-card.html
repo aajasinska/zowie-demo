@@ -56,6 +56,23 @@ body{
   color:black;
 }
 
+.badge{
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.badge-delivered{
+  background:#a2d99c;
+  color:white;
+}
+
+.badge-processing{
+  background:#e6e3df;
+  color:black;
+}
+
 .row{
   display:flex;
   justify-content:space-between;
@@ -102,11 +119,24 @@ const app = document.getElementById("app");
 
 if(data){
 
-  let badgeClass = "badge-approved";
+  let claimBadgeClass = "badge-approved";
+  let shipBadgeClass = "badge-processing";
   var style = surface === 'hello' ? 'hello' : 'chat';
   
   if(data.claimStatus === "Denied"){
-    badgeClass = "badge-denied";
+    claimBadgeClass = "badge-denied";
+  }
+
+  if (data.shipmentStatus.includes("Delivered")){
+    shipBadgeClass = "badge-delivered";
+  }
+
+  let deliveryLabel = "Expected Delivery";
+  let deliveryValue = data.expectedDeliveryDate;
+  
+  if (data.shipmentStatus === "Delivered" && data.actualDeliveryDate) {
+    deliveryLabel = "Delivered On";
+    deliveryValue = data.actualDeliveryDate;
   }
 
   app.innerHTML = `
@@ -114,7 +144,7 @@ if(data){
 
     <div class="header">
       <span>Claim Status</span>
-      <span class="badge ${badgeClass}">
+      <span class="badge ${claimBadgeClass}">
         ${data.claimStatus}
       </span>
     </div>
@@ -127,6 +157,32 @@ if(data){
     <div class="row">
       <span class="label">Reason</span>
       <span class="value">${data.statusReason}</span>
+    </div>
+
+  </div>
+
+  <div class="card-${style}">
+
+    <div class="header">
+      <span>Replacement Shipment</span>
+      <span class="badge ${badgeClass}">
+        ${data.shipmentStatus}
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="label">Shipment ID</span>
+      <span class="value">${data.shipmentId}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">Ship Date</span>
+      <span class="value">${data.shipDate}</span>
+    </div>
+
+    <div class="row">
+      <span class="label">${deliveryLabel}</span>
+      <span class="value">${deliveryValue}</span>
     </div>
 
   </div>
