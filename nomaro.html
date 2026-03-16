@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomaro | Premium Travel Goods</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f5f2;
+      color: #111;
+      overflow: hidden; /* prevent scroll */
+    }
+
+    header {
+      height: 10vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 60px;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    .hero {
+      height: 90vh;
+      margin-top: 10vh; /* compensate for fixed header */
+      background-image: url('nomaro-bg.png');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NOMARO</div>
+    <nav>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Warranty</a>
+      <a href="#">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Travel Beautifully</h1>
+      <p>Premium luggage designed for the modern traveler.</p>
+    </div>
+  </section>
+  <script type="text/javascript">
+  (function(cb) {
+    var js = document.createElement("script");
+    if (js.readyState) {js.onreadystatechange = function() {if (js.readyState === "loaded" || js.readyState === "complete") {js.onreadystatechange = null; cb();}};
+    } else {js.onload = function(){cb();};}
+    js.type = "module";
+    js.defer = true;
+    js.src = "https://eu1.chat.getzowie.com/web/chat-widget/zowie-widget-entry.js";
+    document.body.appendChild(js);
+  })(function() {
+    ZowieWidget.init("4a8e9f37de2543fc924e652f60ed786f", {
+      voiceExperienceEnabled: true
+    });
+  });
+</script>
+</body>
+</html>
