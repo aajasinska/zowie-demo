@@ -12,11 +12,19 @@ body{
   background:transparent;
 }
 
-.card{
+.card-hello{
   max-width:360px;
   margin:0 8px 12px;
   border-radius:12px;
   background:white;
+  overflow:hidden;
+}
+
+.card-chat{
+  max-width:360px;
+  margin:0 8px 12px;
+  border-radius:12px;
+  background:#fcedd9;
   overflow:hidden;
 }
 
@@ -72,13 +80,14 @@ if(raw){
     data = JSON.parse(decodeURIComponent(raw));
   }catch(e){}
 }
-
+  
+var surface = params.get('surface');
 const app = document.getElementById("app");
 
 if(data){
-
+  var style = surface === 'hello' ? 'hello' : 'chat';
   app.innerHTML = `
-  <div class="card">
+  <div class="card' + style + '>">
   
     <div class="header">
       Checking your warranty claim
