@@ -133,6 +133,14 @@ if(data){
     deliveryLabel = "Delivered On";
     deliveryValue = data.actualDeliveryDate;
   }
+
+  let shipmentLabel = "Preparing";
+  
+  if (data.shipmentStatus && data.shipmentStatus.includes("Delivered") && data.actualDeliveryDate) {
+    shipmentLabel = "Delivered";
+  } else if (data.shipmentStatus && data.shipmentStatus.includes("Transit")) {
+    shipmentLabel = "In Transit";
+  }
   
   let shipmentCard = "";
 
@@ -141,9 +149,9 @@ if(data){
       <div class="card-${style}">
   
       <div class="header">
-        <span>Replacement Shipment</span>
+        <span>Your Shipment</span>
         <span class="badge ${shipBadgeClass}">
-          ${data.shipmentStatus}
+          ${shipmentLabel}
         </span>
       </div>
   
