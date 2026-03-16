@@ -127,18 +127,50 @@ if(data){
     claimBadgeClass = "badge-denied";
   }
 
-  if (data.shipmentStatus.includes("Delivered")){
+  if (data.shipmentStatus && data.shipmentStatus.includes("Delivered")){
     shipBadgeClass = "badge-delivered";
   }
 
   let deliveryLabel = "Expected Delivery";
   let deliveryValue = data.expectedDeliveryDate;
   
-  if (data.shipmentStatus.includes("Delivered") && data.actualDeliveryDate) {
+  if (data.shipmentStatus && data.shipmentStatus.includes("Delivered") && data.actualDeliveryDate) {
     deliveryLabel = "Delivered On";
     deliveryValue = data.actualDeliveryDate;
   }
+  
+  let shipmentCard = "";
 
+  if(data.shipmentId){
+    shipmentCard = `
+      <div class="card-${style}">
+  
+      <div class="header">
+        <span>Replacement Shipment</span>
+        <span class="badge ${shipBadgeClass}">
+          ${data.shipmentStatus}
+        </span>
+      </div>
+  
+      <div class="row">
+        <span class="label">Shipment ID</span>
+        <span class="value">${data.shipmentId}</span>
+      </div>
+  
+      <div class="row">
+        <span class="label">Ship Date</span>
+        <span class="value">${data.shipDate}</span>
+      </div>
+  
+      <div class="row">
+        <span class="label">${deliveryLabel}</span>
+        <span class="value">${deliveryValue}</span>
+      </div>
+  
+    </div>
+      `;
+  }
+  
   app.innerHTML = `
   <div class="card-${style}">
 
@@ -161,31 +193,7 @@ if(data){
 
   </div>
 
-  <div class="card-${style}">
-
-    <div class="header">
-      <span>Replacement Shipment</span>
-      <span class="badge ${badgeClass}">
-        ${data.shipmentStatus}
-      </span>
-    </div>
-
-    <div class="row">
-      <span class="label">Shipment ID</span>
-      <span class="value">${data.shipmentId}</span>
-    </div>
-
-    <div class="row">
-      <span class="label">Ship Date</span>
-      <span class="value">${data.shipDate}</span>
-    </div>
-
-    <div class="row">
-      <span class="label">${deliveryLabel}</span>
-      <span class="value">${deliveryValue}</span>
-    </div>
-
-  </div>
+  ${shipmentCard}
   `;
 
 }
