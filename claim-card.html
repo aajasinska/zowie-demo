@@ -141,6 +141,31 @@ if(data){
   } else if (data.shipmentStatus && data.shipmentStatus.includes("Transit")) {
     shipmentLabel = "In Transit";
   }
+
+  let shipDateRow = "";
+  let deliveryRow = "";
+  
+  if (data.shipmentStatus && !data.shipmentStatus.includes("Processing")) {
+  
+    if (data.shipDate) {
+      shipDateRow = `
+        <div class="row">
+          <span class="label">Ship Date</span>
+          <span class="value">${data.shipDate}</span>
+        </div>
+      `;
+    }
+  
+    if (deliveryValue) {
+      deliveryRow = `
+        <div class="row">
+          <span class="label">${deliveryLabel}</span>
+          <span class="value">${deliveryValue}</span>
+        </div>
+      `;
+    }
+  
+  }
   
   let shipmentCard = "";
 
@@ -160,15 +185,8 @@ if(data){
         <span class="value">${data.shipmentId}</span>
       </div>
   
-      <div class="row">
-        <span class="label">Ship Date</span>
-        <span class="value">${data.shipDate}</span>
-      </div>
-  
-      <div class="row">
-        <span class="label">${deliveryLabel}</span>
-        <span class="value">${deliveryValue}</span>
-      </div>
+      ${shipDateRow}
+      ${deliveryRow}
   
     </div>
       `;
